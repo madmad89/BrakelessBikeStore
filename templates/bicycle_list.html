@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             {% for bicycle in bicycles %}
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         {% if bicycle.image %}
                             <img src="{{ bicycle.image.url }}" class="card-img-top" alt="{{ bicycle.name }}">
