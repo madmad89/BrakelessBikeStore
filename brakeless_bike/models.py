@@ -22,3 +22,13 @@ class Bicycle(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SpecialOffer(models.Model):
+    product = models.ForeignKey(Bicycle, on_delete=models.CASCADE)
+    special_price = models.DecimalField(max_digits=10, decimal_places=2)
+    valid_until = models.DateField()
+
+    def __str__(self):
+        return self.product
+
