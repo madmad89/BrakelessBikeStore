@@ -1,11 +1,13 @@
-{% extends 'base.html' %} {#   #}
+{% extends 'base.html' %}
 
-{% block title %} Home {% endblock %}
+{% load static %}
+
+{% block title %} Home Page {% endblock %}
 
 {% block content %}
-
-
+    <div class="container-fluid">
+        <div class="mb-3 text-primary text-center ">
+            <img src="{% static 'bicycle_images/logo.png' %}" width="30%" alt="SANTA CRUZ">
+        </div>
+    </div>
 {% endblock %}
-
-
-

@@ -12,6 +12,10 @@ def bicycle_list(request):
     return render(request, 'bicycle_list.html', {'bicycles': bicycles})
 
 
+def home_page(request):
+    return render(request, 'home_page.html',)
+
+
 def add_special_price(request, product_id):
     product = get_object_or_404(Bicycle, id=product_id)
 
