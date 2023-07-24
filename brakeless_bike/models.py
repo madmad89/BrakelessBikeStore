@@ -19,16 +19,12 @@ class Bicycle(models.Model):
     stock = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='static/bicycle_images/', null=True, blank=True)
+    special_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
+    special_price_valid_until = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
-class SpecialPrice(models.Model):
-    product = models.ForeignKey(Bicycle, on_delete=models.CASCADE)
-    special_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
-    valid_until = models.DateField()
 
-    # def __str__(self):
-    #     return self.special_price
 
