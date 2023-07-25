@@ -1,10 +1,6 @@
-from django.shortcuts import render
-
-# Create your views here.
 
 from .models import Bicycle
-from django.shortcuts import render, get_object_or_404, redirect
-from .forms import SpecialPriceForm
+from django.shortcuts import render
 
 
 def bicycle_list(request):
