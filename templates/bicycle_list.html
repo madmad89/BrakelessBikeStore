@@ -14,17 +14,15 @@
         <div class="row">
             {% for bicycle in bicycles %}
                 <div class="col-md-4 mb-3">
-                    <div class="card border border-warning-subtle">
+                    <div class="card">
                         {% if bicycle.image %}
                             <img src="{{ bicycle.image.url }}" class="card-img-top" alt="{{ bicycle.name }}">
                         {% endif %}
                         <div class="card-body ">
                             <h5 class="card-title">{{ bicycle.name }}</h5>
                             <p class="card-text">{{ bicycle.description }}</p>
-                            {#                            <p class="card-text">Price: ${{ bicycle.price }}</p>#}
                             {% if bicycle.special_price %}
                                 <p class="card-text text-decoration-line-through">Price: ${{ bicycle.price }}</p>
-
                                 {# cod pentru pret special #}
                                 {% if bicycle.special_price %}
                                     <p><strong>Special Price:</strong> ${{ bicycle.special_price }}</p>
