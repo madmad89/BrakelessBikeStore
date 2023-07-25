@@ -9,7 +9,8 @@ def bicycle_list(request):
 
 
 def home_page(request):
-    return render(request, 'home_page.html',)
+    bicyles = Bicycle.objects.filter(special_price__isnull=False)
+    return render(request, 'home_page.html', {'bicycles': bicyles})
 
 
 

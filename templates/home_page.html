@@ -9,5 +9,26 @@
         <div class="mb-3 text-primary text-center ">
             <img src="{% static 'bicycle_images/logo.png' %}" width="30%" alt="SANTA CRUZ">
         </div>
+        <div class="row">
+            {% for bicycle in bicycles %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        {% if bicycle.special_price %}
+                            <img src="{{ bicycle.image.url }}" class="card-img-top" alt="{{ bicycle.name }}">
+                        {% endif %}
+                        <div class="card-body ">
+                            <h5 class="card-title">{{ bicycle.name }}</h5>
+                            <p class="card-text">{{ bicycle.description }}</p>
+                            <p class="card-text text-decoration-line-through">Price: ${{ bicycle.price }}</p>
+                            <p><strong>Special Price:</strong> ${{ bicycle.special_price }}</p>
+                            <p><strong>Special Price Valid Until:</strong> {{ bicycle.special_price_valid_until }}</p>
+                            <a href="#" class="btn btn-outline-primary"><strong>Details</strong></a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <li>No bicycles with special prices found.</li>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

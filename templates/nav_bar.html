@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-warning">
     <div class="container-fluid">
         <a class="navbar-brand " href="{% url 'home_page' %}"><strong>Welcome to Brakeless Bikes</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -15,12 +15,12 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Dropdown
+                        aria-expanded="false">
+                        More staff
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Bike Component</a></li>
+                        <li><a class="dropdown-item" href="#">Rider Apparel</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -28,12 +28,15 @@
                     </ul>
                 </li>
             </ul>
+            <div>
+                <button class="btn btn-outline-success me-2" type="#">Login</button>
+            </div>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success me-2" type="submit">Search</button>
             </form>
             <div>
-                <button class="btn btn-outline-success" type="#">Basket</button>
+                <button class="btn btn-outline-success me-2" type="#">Basket</button>
             </div>
         </div>
     </div>
