@@ -28,11 +28,28 @@
                     </ul>
                 </li>
             </ul>
+{#            <div>#}
+{#                {% if user.is_authenticated %}#}
+{#                    <div class="dropdown">#}
+{#                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"#}
+{#                                aria-expanded="false">#}
+{#                            My profile {{ user.username }}#}
+{#                        </button>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>#}
+{#                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                {% else %}#}
+{#                    <a href='{% url 'login' %}' class="btn btn-outline-secondary">Login</a>#}
+{#                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>#}
+{#                {% endif %}#}
+{#            </div>#}
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success me-2" type="submit">Search</button>
             </form>
-            <div >
+            <div>
                 <button class="btn btn-outline-success" type="#">Basket</button>
             </div>
         </div>
