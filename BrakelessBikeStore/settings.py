@@ -125,17 +125,3 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # smtp in loc de console pt a primi pe email
-# EMAIL_HOST = 'mail.aplicatiedjango.ro' # Trebuie decomentat pt email
-EMAIL_HOST_USER = 'grupa42@aplicatiedjango.ro'
-# EMAIL_HOST_PASSWORD = 'Django1234!'  # Trebuie decomentat pt email
-# EMAIL_PORT = 587 # Trebuie decomentat pt email
-# EMAIL_USE_TLS = True # Trebuie decomentat pt email
-
-
-# SMTP -> SIMPLE MAIL TRANSGER PROTOCOL-> PROTOCOL FOLOSIT PENTRU A TRIMITE MAILURI
-# TLS -> TRANSPORT LAYER SECURITY- PROTOCOL CRIPTOGRAFIC FOLOSIT PENTRU A TRIMITE MAILURI IN SIGURANTA.

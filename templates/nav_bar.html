@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid p-3 mb-2 bg-warning text-dark">
+    <div class="container-fluid">
         <a class="navbar-brand " href="{% url 'home_page' %}"><strong>Welcome to Brakeless Bikes</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,23 +28,6 @@
                     </ul>
                 </li>
             </ul>
-{#            <div>#}
-{#                {% if user.is_authenticated %}#}
-{#                    <div class="dropdown">#}
-{#                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"#}
-{#                                aria-expanded="false">#}
-{#                            My profile {{ user.username }}#}
-{#                        </button>#}
-{#                        <ul class="dropdown-menu">#}
-{#                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>#}
-{#                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                {% else %}#}
-{#                    <a href='{% url 'login' %}' class="btn btn-outline-secondary">Login</a>#}
-{#                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>#}
-{#                {% endif %}#}
-{#            </div>#}
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success me-2" type="submit">Search</button>
