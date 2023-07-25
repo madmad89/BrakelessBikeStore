@@ -6,19 +6,19 @@
 
 {% block content %}
 
-    <div class="container-fluid">
-        <div class="mb-3 text-primary text-center ">
+    <div class=" mb-3 container-fluid">
+        <div class="mb-3 text-primary text-center">
             <img src="{% static 'bicycle_images/logo.png' %}" width="30%" alt="SANTA CRUZ">
         </div>
         <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning">Aici vor fi filtrele( Price, newest, sort)</div>
         <div class="row">
             {% for bicycle in bicycles %}
                 <div class="col-md-4 mb-3">
-                    <div class="card">
+                    <div class="card border border-warning-subtle">
                         {% if bicycle.image %}
                             <img src="{{ bicycle.image.url }}" class="card-img-top" alt="{{ bicycle.name }}">
                         {% endif %}
-                        <div class="card-body p-3 mb-2 p-3 mb-2 bg-warning-subtle text-emphasis-warning">
+                        <div class="card-body ">
                             <h5 class="card-title">{{ bicycle.name }}</h5>
                             <p class="card-text">{{ bicycle.description }}</p>
                             {#                            <p class="card-text">Price: ${{ bicycle.price }}</p>#}
@@ -38,7 +38,7 @@
                             {% endif %}
                             <p class="card-text">Stock: {% if bicycle.stock %}In stoc{% else %}Out of
                                 stock{% endif %}</p>
-                            <a href="#" class="btn btn-outline-primary">Add to Basket</a>
+                            <a href="#" class="btn btn-outline-primary"><strong>Add to Basket</strong></a>
                         </div>
                     </div>
                 </div>
