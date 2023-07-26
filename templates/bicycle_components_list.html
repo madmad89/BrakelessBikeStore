@@ -8,13 +8,14 @@
 
     <div class=" mb-3 container-fluid">
          <div class=" list-in-line mb-3 text-primary text-center ">
-            <img src="{% static 'logos/sram-xx1-logo.png' %}" width="5%" alt="FOX Racing">
-            <img src="{% static 'logos/shimano-hd.png' %}" width="5%" alt="FOX Racing">
+            <img src="{% static 'logos/sram-xx1-logo.png' %}" width="5%" alt="SRAM">
+            <img src="{% static 'logos/shimano-hd.png' %}" width="15%" alt="Shimano">
             <img src="{% static 'logos/fox_logo.png' %}" width="5%" alt="FOX Racing">
+            <img src="{% static 'logos/rockshox-logo.png' %}" width="15%" alt="RockShox">
         </div>
         <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning">Aici vor fi filtrele( Price, newest, sort)</div>
         <div class="row">
-            {% for component in components %}
+            {% for component in bikecomponents %}
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         {% if bikecomponents.image %}
@@ -34,9 +35,9 @@
                                     {% endif %}
                                 {% endif %}
                             {% else %}
-                                <p class="card-text">Price: ${{ bicycle.price }}</p>
+                                <p class="card-text">Price: ${{ bikecomponents.price }}</p>
                             {% endif %}
-                            <p class="card-text">Stock: {% if bicycle.stock %}In stoc{% else %}Out of
+                            <p class="card-text">Stock: {% if bikecomponents.stock %}In stoc{% else %}Out of
                                 stock
                             {% endif %}</p>
                             <a href="#" class="btn btn-outline-primary"><strong>Add to basket</strong></a>
