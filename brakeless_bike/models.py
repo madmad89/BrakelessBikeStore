@@ -38,3 +38,14 @@ class BikeComponents(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class RiderApparel(models.Model):
+    name = models.CharField(max_length=300)
+    description = models.TextField()
+    size = models.CharField(max_length=155)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='static/rider_apparel_images/', null=True, blank=True)
+    special_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
+    special_price_valid_until = models.DateField(null=True, blank=True)
+
