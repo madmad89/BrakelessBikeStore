@@ -49,3 +49,6 @@ class RiderApparel(models.Model):
     special_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     special_price_valid_until = models.DateField(null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+

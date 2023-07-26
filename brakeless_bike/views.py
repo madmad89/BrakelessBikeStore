@@ -28,7 +28,7 @@ def bicycle_components_list(request):
 
 def rider_apparel_list(request):
     apparel = RiderApparel.objects.all()
-    return render(request, 'bicycle_components_list.html', {'apparel': apparel})
+    return render(request, 'rider_apparel_list.html', {'apparel': apparel})
 
 
 class BicycleDetailsView(DetailView):
