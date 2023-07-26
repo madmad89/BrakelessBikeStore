@@ -8,29 +8,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-decoration-underline" aria-current="page" href="{% url 'home_page' %}">Home</a>
+                    <a class="nav-link active text-decoration-underline" aria-current="page" href="{% url 'home_page' %}"><strong>Home</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-decoration-underline" href="{% url 'bicycle_list' %}">Bikes</a>
+                    <a class="nav-link text-decoration-underline" href="{% url 'bicycle_list' %}"><strong>Bikes</strong></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-decoration-underline" href="#">Bike Component</a></li>
-                <li class="nav-item">
-                    <a class="nav-link text-decoration-underline" href="#">Rider Apparel</a></li>
-{#                <li class="nav-item dropdown">#}
-{#                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"#}
-{#                       aria-expanded="false">#}
-{#                        More staff#}
-{#                    </a>#}
-{#                    <ul class="dropdown-menu">#}
-{#                        <li><a class="dropdown-item" href="#">Bike Component</a></li>#}
-{#                        <li><a class="dropdown-item" href="#">Rider Apparel</a></li>#}
-{#                        <li>#}
-{#                            <hr class="dropdown-divider">#}
-{#                        </li>#}
-{#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
-{#                    </ul>#}
-{#                </li>#}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <strong>Shop</strong>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Bike Component</a></li>
+                        <li><a class="dropdown-item" href="#">Rider Apparel</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
             </ul>
             <div>
                 <button class="btn btn-outline-success me-2" type="#">Login</button>
