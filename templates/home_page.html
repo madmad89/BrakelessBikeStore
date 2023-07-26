@@ -5,6 +5,7 @@
 {% block title %} Home Page {% endblock %}
 
 {% block content %}
+
     <div class="container-fluid">
         <div class="mb-3 text-primary text-center ">
             <img src="{% static 'logos/SC_logo.png' %}" width="30%" alt="SANTA CRUZ">
@@ -30,5 +31,27 @@
                 <li>Check Bikes Section</li>
             {% endfor %}
         </div>
+        <div class="row">
+            {% for component in components %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        {% if component.special_price %}
+                            <img src="{{ component.image.url }}" class="card-img-top" alt="{{ component.name }}">
+                        {% endif %}
+                        <div class="card-body ">
+                            <h5 class="card-title">{{ component.name }}</h5>
+                            <p class="card-text">{{ component.description }}</p>
+                            <p class="card-text text-decoration-line-through">Price: ${{ component.price }}</p>
+                            <p><strong>Special Price:</strong> ${{ component.special_price }}</p>
+                            <p><strong>Special Price Valid Until:</strong> {{ component.special_price_valid_until }}</p>
+                            <a href="#" class="btn btn-outline-primary"><strong>Details</strong></a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <li>Check BikeComponents Section</li>
+            {% endfor %}
+        </div>
     </div>
+
 {% endblock %}
