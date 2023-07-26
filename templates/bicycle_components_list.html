@@ -7,28 +7,30 @@
 {% block content %}
 
     <div class=" mb-3 container-fluid">
-         <div class="mb-3 text-primary text-center ">
-            <img src="{% static 'logos/shimano-logo.png' %}" width="30%" alt="SANTA CRUZ">
+         <div class=" list-in-line mb-3 text-primary text-center ">
+            <img src="{% static 'logos/sram-xx1-logo.png' %}" width="5%" alt="FOX Racing">
+            <img src="{% static 'logos/shimano-hd.png' %}" width="5%" alt="FOX Racing">
+            <img src="{% static 'logos/fox_logo.png' %}" width="5%" alt="FOX Racing">
         </div>
         <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning">Aici vor fi filtrele( Price, newest, sort)</div>
         <div class="row">
-            {% for bicycle in bicycles %}
+            {% for component in components %}
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        {% if bicycle.image %}
-                            <img src="{{ bicycle.image.url }}" class="card-img-top" alt="{{ bicycle.name }}">
+                        {% if bikecomponents.image %}
+                            <img src="{{ bikecomponents.image.url }}" class="card-img-top" alt="{{ bikecomponents.name }}">
                         {% endif %}
                         <div class="card-body ">
-                            <h5 class="card-title">{{ bicycle.name }}</h5>
-                            <p class="card-text">{{ bicycle.description }}</p>
-                            {% if bicycle.special_price %}
-                                <p class="card-text text-decoration-line-through">Price: ${{ bicycle.price }}</p>
+                            <h5 class="card-title">{{ bikecomponents.name }}</h5>
+                            <p class="card-text">{{ bikecomponents.description }}</p>
+                            {% if bikecomponents.special_price %}
+                                <p class="card-text text-decoration-line-through">Price: ${{ bikecomponents.price }}</p>
                                 {# cod pentru pret special #}
-                                {% if bicycle.special_price %}
-                                    <p><strong>Special Price:</strong> ${{ bicycle.special_price }}</p>
-                                    {% if bicycle.special_price_valid_until %}
+                                {% if bikecomponents.special_price %}
+                                    <p><strong>Special Price:</strong> ${{ bikecomponents.special_price }}</p>
+                                    {% if bikecomponents.special_price_valid_until %}
                                         <p><strong>Special Price Valid
-                                            Until:</strong> {{ bicycle.special_price_valid_until }}</p>
+                                            Until:</strong> {{ bikecomponents.special_price_valid_until }}</p>
                                     {% endif %}
                                 {% endif %}
                             {% else %}
