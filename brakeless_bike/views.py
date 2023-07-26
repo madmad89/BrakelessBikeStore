@@ -6,7 +6,12 @@ from django.shortcuts import render
 
 def home_page(request):
     bicycles = Bicycle.objects.filter(special_price__isnull=False)
-    return render(request, 'home_page.html', {'bicycles': bicycles})
+    components = BikeComponents.objects.filter(special_price__isnull=False)
+    content = {
+        'bicycles': bicycles,
+        'components': components
+    }
+    return render(request, 'home_page.html', content)
 
 
 def bicycle_list(request):
