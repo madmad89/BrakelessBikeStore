@@ -15,8 +15,8 @@ def bicycle_list(request):
 
 
 def bicycle_components_list(request):
-    bikecomponents = BikeComponents.objects.all()
-    return render(request, 'bicycle_components_list.html', {'bikecomponents': bikecomponents})
+    components = BikeComponents.objects.all()
+    return render(request, 'bicycle_components_list.html', {'components': components})
 
 
 class BicycleDetailsView(DetailView):

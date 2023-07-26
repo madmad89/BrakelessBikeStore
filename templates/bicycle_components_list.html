@@ -15,29 +15,29 @@
         </div>
         <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning">Aici vor fi filtrele( Price, newest, sort)</div>
         <div class="row">
-            {% for component in bikecomponents %}
+            {% for component in components %}
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        {% if bikecomponents.image %}
-                            <img src="{{ bikecomponents.image.url }}" class="card-img-top" alt="{{ bikecomponents.name }}">
+                        {% if component.image %}
+                            <img src="{{ component.image.url }}" class="card-img-top" alt="{{ component.name }}">
                         {% endif %}
                         <div class="card-body ">
-                            <h5 class="card-title">{{ bikecomponents.name }}</h5>
-                            <p class="card-text">{{ bikecomponents.description }}</p>
-                            {% if bikecomponents.special_price %}
-                                <p class="card-text text-decoration-line-through">Price: ${{ bikecomponents.price }}</p>
+                            <h5 class="card-title">{{ component.name }}</h5>
+                            <p class="card-text">{{ component.description }}</p>
+                            {% if component.special_price %}
+                                <p class="card-text text-decoration-line-through">Price: ${{ component.price }}</p>
                                 {# cod pentru pret special #}
-                                {% if bikecomponents.special_price %}
-                                    <p><strong>Special Price:</strong> ${{ bikecomponents.special_price }}</p>
-                                    {% if bikecomponents.special_price_valid_until %}
+                                {% if component.special_price %}
+                                    <p><strong>Special Price:</strong> ${{ component.special_price }}</p>
+                                    {% if component.special_price_valid_until %}
                                         <p><strong>Special Price Valid
-                                            Until:</strong> {{ bikecomponents.special_price_valid_until }}</p>
+                                            Until:</strong> {{ component.special_price_valid_until }}</p>
                                     {% endif %}
                                 {% endif %}
                             {% else %}
-                                <p class="card-text">Price: ${{ bikecomponents.price }}</p>
+                                <p class="card-text">Price: ${{ component.price }}</p>
                             {% endif %}
-                            <p class="card-text">Stock: {% if bikecomponents.stock %}In stoc{% else %}Out of
+                            <p class="card-text">Stock: {% if component.stock %}In stoc{% else %}Out of
                                 stock
                             {% endif %}</p>
                             <a href="#" class="btn btn-outline-primary"><strong>Add to basket</strong></a>
