@@ -14,9 +14,9 @@
         <div class="row">
             {% for bicycle in bicycles %}
                 <div class="col-md-4 mb-3">
-                    <div class="card">
+                    <div class="card border-info mb-3 h-100">
                         {% if bicycle.image %}
-                            <img src="{{ bicycle.image.url }}" class="card-img-top" alt="{{ bicycle.name }}">
+                            <img src="{{ bicycle.image.url }}" class="card-img-top my-4" alt="{{ bicycle.name }}">
                         {% endif %}
                         <div class="card-body ">
                             <h5 class="card-title">{{ bicycle.name }}</h5>
