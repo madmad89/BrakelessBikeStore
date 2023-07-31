@@ -15,6 +15,7 @@ def home_page(request):
     }
     return render(request, 'home_page.html', content)
 
+
 # TODO  o classa care sa mosteneasca un datail view pentru toate categoriile
 def bicycle_list(request):
     bicycles = Product.objects.all()
