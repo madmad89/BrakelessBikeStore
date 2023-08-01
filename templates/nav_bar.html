@@ -11,56 +11,44 @@
                     <a class="nav-link active text-decoration-underline" aria-current="page"
                        href="{% url 'home_page' %}"><strong>Home</strong></a>
                 </li>
+                {#                {% for category in categories %}#}
+                {#                    <li class="nav-item">#}
+                {#                        <a class="nav-link text-decoration-underline"#}
+                {#                           href="{% url 'category_details' category.id %}"><strong>{{ category.name }}</strong></a>#}
+{#                </li>#}
+                {#                {% endfor %}#}
+
                 {% for category in categories %}
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-underline"
-                           href="{% url 'bicycle_list' %}"><strong>{{ category.name }}</strong></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <strong>{{ category.name }}</strong>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for subcategory in category.subcategories %}
+                                <li><a class="dropdown-item" href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a></li>
+                            {% endfor %}
+                        </ul>
                     </li>
                 {% endfor %}
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        <strong>Shop</strong>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {#                        <li><a class="dropdown-item" href="{%  url 'bicycle_components' %}">Bike Component</a></li>#}
-                        <li><a class="dropdown-item" href="#">Rider Apparel</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
             </ul>
-            <div class="dropdown">
-                <button type="button" class="btn btn-outline-success dropdown-toggle bt me-2" data-bs-toggle="dropdown"
-                        aria-expanded="false" data-bs-auto-close="outside">
-                    Login
-                </button>
-                <form class="dropdown-menu p-4">
-                    <div class="mb-3">
-                        <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleDropdownFormEmail2"
-                               placeholder="email@example.com">
+            <div>
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            My profile {{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleDropdownFormPassword2"
-                               placeholder="Password">
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                            <label class="form-check-label" for="dropdownCheck2">
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary me-2 ">Sign in</button>
-                    <button type="submit" class="btn btn-secondary me-2">Sign up</button>
-                </form>
+                {% else %}
+                    <a href='{% url 'login' %}' class="btn btn-outline-primary">Login</a>
+                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
+                {% endif %}
             </div>
             <div>
                 <button class="btn btn-outline-success me-2" type="#">Basket</button>

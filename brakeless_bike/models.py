@@ -8,6 +8,9 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     parent_category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True, null=True)
 
+    def subcategories(self):
+        return Category.objects.filter(parent_category=self)
+
     def __str__(self):
         return self.name
 

@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, ListView
 
-from .models import Product
+from .models import Product, Category
 from django.shortcuts import render
 
 
@@ -23,6 +23,7 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
+
 # TODO  o classa care sa mosteneasca un datail view pentru toate categoriile
 def bicycle_list(request):
     bicycles = Product.objects.all()
@@ -40,6 +41,20 @@ def bicycle_list(request):
 
 
 class BicycleDetailsView(DetailView):
-    templates_name = "bicycle_details.html"
+    template_name = "bicycle_details.html"
     model = Product
-    permission_required = 'view_bicycle'
+    # permission_required = 'view_bicycle'
+
+
+class CategoryDetailsView(DetailView):
+    template_name = "bicycle_list.html"
+    model = Category
+    context_object_name = 'category'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category = context[self.context_object_name]
+        products = Product.objects.filter(category=category)
+        context['bicycles'] = products
+        return context
+    # permission_required = 'view_bicycle'
