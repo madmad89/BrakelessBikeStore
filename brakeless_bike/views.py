@@ -1,4 +1,4 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 from .models import Product
 from django.shortcuts import render
@@ -15,6 +15,13 @@ def home_page(request):
     }
     return render(request, 'home_page.html', content)
 
+
+class ProductListView(ListView):
+    model = Product
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 # TODO  o classa care sa mosteneasca un datail view pentru toate categoriile
 def bicycle_list(request):
