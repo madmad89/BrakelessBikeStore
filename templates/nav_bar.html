@@ -8,21 +8,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-decoration-underline" aria-current="page" href="{% url 'home_page' %}"><strong>Home</strong></a>
+                    <a class="nav-link active text-decoration-underline" aria-current="page"
+                       href="{% url 'home_page' %}"><strong>Home</strong></a>
                 </li>
-				{% for category in categories %}
-                <li class="nav-item">
-                    <a class="nav-link text-decoration-underline" href="{% url 'bicycle_list' %}"><strong>{{ category.name }}</strong></a>
-                </li>
+                {% for category in categories %}
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-underline"
+                           href="{% url 'bicycle_list' %}"><strong>{{ category.name }}</strong></a>
+                    </li>
                 {% endfor %}
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button"
+                       data-bs-toggle="dropdown"
                        aria-expanded="false">
                         <strong>Shop</strong>
                     </a>
                     <ul class="dropdown-menu">
-{#                        <li><a class="dropdown-item" href="{%  url 'bicycle_components' %}">Bike Component</a></li>#}
+                        {#                        <li><a class="dropdown-item" href="{%  url 'bicycle_components' %}">Bike Component</a></li>#}
                         <li><a class="dropdown-item" href="#">Rider Apparel</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -31,8 +34,33 @@
                     </ul>
                 </li>
             </ul>
-            <div>
-                <button class="btn btn-outline-success me-2" type="#">Login</button>
+            <div class="dropdown">
+                <button type="button" class="btn btn-outline-success dropdown-toggle bt me-2" data-bs-toggle="dropdown"
+                        aria-expanded="false" data-bs-auto-close="outside">
+                    Login
+                </button>
+                <form class="dropdown-menu p-4">
+                    <div class="mb-3">
+                        <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleDropdownFormEmail2"
+                               placeholder="email@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleDropdownFormPassword2"
+                               placeholder="Password">
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                            <label class="form-check-label" for="dropdownCheck2">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2 ">Sign in</button>
+                    <button type="submit" class="btn btn-secondary me-2">Sign up</button>
+                </form>
             </div>
             <div>
                 <button class="btn btn-outline-success me-2" type="#">Basket</button>
