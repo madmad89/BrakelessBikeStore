@@ -1,7 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView
 
-from .models import Product, Category
-from django.shortcuts import render
+from .models import Product, Category, Cart, CartItem
+from django.shortcuts import render, redirect
 
 
 def home_page(request):
@@ -58,3 +59,20 @@ class CategoryDetailsView(DetailView):
         context['bicycles'] = products
         return context
     # permission_required = 'view_bicycle'
+
+
+@login_required
+def add_product_to_cart(request):
+    if request.method == 'POST':
+        open_cart, created = Cart.objects.get_or_create(user=request.user, status='open')
+        product_id = request.POST.get('product_id')
+        quantity = int(request.POST.get('quantity', 1))
+        cart_item, created = CartItem.objects.get_or_create(product_id=product_id, cart=open_cart)
+        cart_item.quantity += quantity
+        cart_item.save()
+    return redirect(request.META['HTTP_REFERER'])
+
+
+def open_cart_view(request):
+    open_cart, created = Cart.objects.get_or_create(user=request.user, status='open')
+    return render(request, 'open_cart.html', {'cart': open_cart})

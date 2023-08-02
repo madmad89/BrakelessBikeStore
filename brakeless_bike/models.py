@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -29,29 +30,22 @@ class Product(models.Model):
         return self.name
 
 
-# class BikeComponents(models.Model):
-#     name = models.CharField(max_length=300)
-#     description = models.TextField()
-#     price = models.DecimalField(max_digits=10, decimal_places=2)
-#     stock = models.BooleanField(default=True)
-#     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-#     image = models.ImageField(upload_to='static/bicycle_images/', null=True, blank=True)
-#     special_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
-#     special_price_valid_until = models.DateField(null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#
-# class RiderApparel(models.Model):
-#     name = models.CharField(max_length=300)
-#     description = models.TextField()
-#     size = models.CharField(max_length=155)
-#     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-#     image = models.ImageField(upload_to='static/bicycle_images/', null=True, blank=True)
-#     special_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
-#     special_price_valid_until = models.DateField(null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.name
-#
+class Cart(models.Model):
+    STATUS = (
+        ('open', 'Open'),
+        ('closed', 'Closed'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=50, choices=STATUS, default='open')
+
+    def __str__(self):
+        return f'{self.status} cart of {self.user}'
+
+
+class CartItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.quantity} X {self.product} in {self.cart}'

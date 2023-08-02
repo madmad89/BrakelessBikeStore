@@ -37,7 +37,13 @@
                             <p class="card-text">Stock: {% if bicycle.stock %}In stoc{% else %}Out of
                                 stock
                             {% endif %}</p>
-                            <a href="#" class="btn btn-outline-primary"><strong>Add to basket</strong></a>
+                            <form action="{% url 'add_product_to_cart' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ bicycle.id }}">
+                                <input type="number" name="quantity" value="1">
+                                <button type="submit" class="btn btn-outline-primary"><strong>Add to basket</strong>
+                                </button>
+                            </form>
                             <a href="#" class="btn btn-outline-secondary"><strong>Details</strong></a>
                         </div>
                     </div>

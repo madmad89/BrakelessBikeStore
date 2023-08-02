@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-warning">
+<nav class="navbar navbar-expand-xl bg-warning">
     <div class="container-fluid">
-        <a class="navbar-brand " href="{% url 'home_page' %}"><strong>Welcome to Brakeless Bikes</strong></a>
+        <a class="navbar-brand " href="{% url 'home_page' %}"><strong>Brakeless Bikes</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,25 +9,20 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active text-decoration-underline" aria-current="page"
-                       href="{% url 'home_page' %}"><strong>Home</strong></a>
+                        href="{% url 'home_page' %}"><strong>Home</strong></a>
                 </li>
-                {#                {% for category in categories %}#}
-                {#                    <li class="nav-item">#}
-                {#                        <a class="nav-link text-decoration-underline"#}
-                {#                           href="{% url 'category_details' category.id %}"><strong>{{ category.name }}</strong></a>#}
-{#                </li>#}
-                {#                {% endfor %}#}
-
                 {% for category in categories %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false">
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <strong>{{ category.name }}</strong>
                         </a>
                         <ul class="dropdown-menu">
                             {% for subcategory in category.subcategories %}
-                                <li><a class="dropdown-item" href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -51,7 +46,7 @@
                 {% endif %}
             </div>
             <div>
-                <button class="btn btn-outline-success me-2" type="#">Basket</button>
+                <a class="btn btn-outline-success me-2" href="{% url 'open_cart' %}">Basket ({{ product_count }})</a>
             </div>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

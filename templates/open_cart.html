@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Open cart{% endblock %}
+
+{% block content %}
+    <div>
+        {% for cart_item in cart.cartitem_set.all %}
+            {{ cart_item }}<br>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+
