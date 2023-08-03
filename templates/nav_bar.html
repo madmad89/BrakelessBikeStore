@@ -44,10 +44,10 @@
                         </ul>
                     </div>
                 {% else %}
-                    <a href='{% url 'login' %}' class="btn btn-outline-success">
+                    <a href='{% url 'login' %}' class="btn btn-info">
                     <span class="material-symbols-outlined">login</span>Login
                     </a>
-                    <a href="{% url 'create-user' %}" class="btn btn-outline-danger me-2">
+                    <a href="{% url 'create-user' %}" class="btn btn-outline-success me-2">
                         <span class="material-symbols-outlined">person_add</span>Sign up</a>
                 {% endif %}
             </div>
