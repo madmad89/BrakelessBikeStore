@@ -7,7 +7,7 @@ class UserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email',
-                # 'username'
+                'username'
                 ]
 
     def __init__(self, *args, **kwargs):
@@ -18,7 +18,7 @@ class UserForm(UserCreationForm):
         self.fields['last_name'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Pleanse enter your last_name'})
         self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pleanse enter your email'})
-        # self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pleanse enter your username'})
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pleanse enter your username'})
         self.fields['password1'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Pleanse enter your password'})
         self.fields['password2'].widget.attrs.update(

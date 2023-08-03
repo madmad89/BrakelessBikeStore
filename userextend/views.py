@@ -28,7 +28,7 @@ class UserCreateView(CreateView):
             new_user.last_name = new_user.last_name.title()
 
             # new_user.username = f'{new_user.first_name[0].lower()}{new_user.last_name.lower().replace(" ", "")}_{randint(100000, 999999)}'
-            new_user.username = new_user.username()
+            # new_user.username = new_user.username.title()
 # Comenteaza linita din form linia cu username din forms
             new_user.save()
 
@@ -43,17 +43,17 @@ class UserCreateView(CreateView):
 
             # History.objects.create(text=history_text, created_at=datetime.datetime.now())
 
-            # Trimiterea de mail CU TEMPLATEA
-            details_user = {
-                'fullname': f'{new_user.first_name} {new_user.last_name}',
-                'username': new_user.username,
-            }
-            subject = 'Confirmare cont nou in aplicatie'
-            message = get_template('mail.html').render(details_user)
-
-            mail = EmailMessage(subject, message, EMAIL_HOST_USER, [new_user.email])
-            mail.content_subtype = 'html'
-            mail.send()
+            # # Trimiterea de mail CU TEMPLATEA
+            # details_user = {
+            #     'fullname': f'{new_user.first_name} {new_user.last_name}',
+            #     'username': new_user.username,
+            # }
+            # subject = 'Confirmare cont nou in aplicatie'
+            # message = get_template('mail.html').render(details_user)
+            #
+            # mail = EmailMessage(subject, message, EMAIL_HOST_USER, [new_user.email])
+            # mail.content_subtype = 'html'
+            # mail.send()
 
         return super().form_valid(form)
 

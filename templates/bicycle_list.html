@@ -10,17 +10,17 @@
         <div class="mb-3 text-primary text-center">
             <img src="{% static 'bicycle_images/SC_logo.png' %}" width="30%" alt="SANTA CRUZ">
         </div>
-        <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning">Aici vor fi filtrele( Price, newest, sort)</div>
+        <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning"></div>
         <div class="row">
             {% for bicycle in bicycles %}
                 <div class="col-md-3 mb-3">
-                    <div class="card border-info mb-3 h-100">
+                    <div class="card border-info mb-3 h-100" style="color: device-cmyk()">
                         {% if bicycle.image %}
                             <img src="{{ bicycle.image.url }}" class="card-img-top my-4" alt="{{ bicycle.name }}">
                         {% endif %}
                         <div class="card-body ">
                             <h5 class="card-title">{{ bicycle.name }}</h5>
-                            <p class="card-text">{{ bicycle.description }}</p>
+                            <p class="card-text">{{ bicycle.description|truncatechars:100 }}</p>
                             {% if bicycle.special_price %}
                                 <p class="card-text text-decoration-line-through">Price: ${{ bicycle.price }}</p>
                                 {# cod pentru pret special #}
@@ -39,12 +39,16 @@
                             {% endif %}</p>
                             <form action="{% url 'add_product_to_cart' %}" method="post">
                                 {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ bicycle.id }}">
-                                <input type="number" name="quantity" value="1">
-                                <button type="submit" class="btn btn-outline-primary"><strong>Add to basket</strong>
-                                </button>
+                                <div class="row">
+                                    <input type="hidden" name="product_id" value="{{ bicycle.id }}">
+                                    <input class=" form-control me-2 my-2" type="number" name="quantity" value="1" style="width: 70px">
+                                    <button type="submit" class="btn lh-1 my-2 col btn-outline-primary "><strong>Add to
+                                        basket</strong></button>
+                                </div>
                             </form>
-                            <a href="#" class="btn btn-outline-secondary"><strong>Details</strong></a>
+                            <div class="text-center mt-3  ">
+                                <a href="#" class="btn btn-outline-secondary"><strong>Details</strong></a>
+                            </div>
                         </div>
                     </div>
                 </div>
