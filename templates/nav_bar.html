@@ -9,19 +9,19 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active text-decoration-underline" aria-current="page"
-                        href="{% url 'home_page' %}"><strong>Home</strong></a>
+                       href="{% url 'home_page' %}"><strong>Home</strong></a>
                 </li>
                 {% for category in categories %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
                             <strong>{{ category.name }}</strong>
                         </a>
                         <ul class="dropdown-menu">
                             {% for subcategory in category.subcategories %}
                                 <li><a class="dropdown-item"
-                                        href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a>
+                                       href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -31,9 +31,9 @@
             <div>
                 {% if user.is_authenticated %}
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        <button class="btn btn-secondary dropdown-toggle me-2" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                            My profile {{ user.username }}
+                            {{ user.username }}
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>
@@ -42,7 +42,7 @@
                     </div>
                 {% else %}
                     <a href='{% url 'login' %}' class="btn btn-outline-primary">Login</a>
-                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
+                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary me-2">Sign up</a>
                 {% endif %}
             </div>
             <div>
