@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-xl bg-warning">
-    <div class="container-fluid">
-        <a class="navbar-brand " href="{% url 'home_page' %}"><strong>Brakeless Bikes</strong></a>
+<nav class="navbar navbar-expand-xl" style="background-color: #7e17e6;">
+    <div class="container-md">
+        <a class="navbar-brand me-5 " href="{% url 'home_page' %}">
+            <img src="/static/bicycle_images/Logo-MM.png" alt="no image" width="40">
+            <strong style="color: aqua"> Brakeless Bikes</strong>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,16 +13,16 @@
                 <li class="nav-item">
                     <a class="nav-link active text-decoration-underline" aria-current="page"
                        href="{% url 'home_page' %}"><strong>
-                        <span class="material-symbols-outlined">home</span></strong></a>
+                        <span class="material-symbols-outlined" style="color: aqua">home</span></strong></a>
                 </li>
                 {% for category in categories %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-decoration-underline" href="#" role="button"
+                        <a class="nav-link dropdown-toggle text-decoration-underline" style="color: aqua" href="#" role="button"
                            data-bs-toggle="dropdown"
                            aria-expanded="false">
                             <strong>{{ category.name }}</strong>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="background-color: aqua">
                             {% for subcategory in category.subcategories %}
                                 <li><a class="dropdown-item"
                                        href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a>
@@ -33,8 +36,8 @@
                 {% if user.is_authenticated %}
                     <div class="dropdown">
                         <button
-                                class="btn btn-info dropdown-toggle me-2" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false"><span class="material-symbols-outlined">personal_injury</span>
+                                class="btn btn-outline dropdown-toggle me-2" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" style="color: aqua"><span class="material-symbols-outlined">personal_injury</span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'password_change' %}">
@@ -52,12 +55,12 @@
                 {% endif %}
             </div>
             <div>
-                <a class="btn btn-outline-dark me-2" href="{% url 'open_cart' %}">
+                <a class="btn me-2" style="color: aqua" href="{% url 'open_cart' %}">
                     <span class="material-symbols-outlined">shopping_cart</span> ({{ product_count }})</a>
             </div>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success me-2" type="submit">
+                <button class="btn me-2" style="color: aqua" type="submit">
                     <span class="material-symbols-outlined">search</span></button>
             </form>
 
