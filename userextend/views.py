@@ -27,7 +27,8 @@ class UserCreateView(CreateView):
             # atribui valoarea new_user.first_name.title() campului first_name al obictului new_user
             new_user.last_name = new_user.last_name.title()
 
-            new_user.username = f'{new_user.first_name[0].lower()}{new_user.last_name.lower().replace(" ", "")}_{randint(100000, 999999)}'
+            # new_user.username = f'{new_user.first_name[0].lower()}{new_user.last_name.lower().replace(" ", "")}_{randint(100000, 999999)}'
+            new_user.username = new_user.username()
 # Comenteaza linita din form linia cu username din forms
             new_user.save()
 
