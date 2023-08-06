@@ -12,34 +12,34 @@
         </div>
         <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning">Aici vor fi filtrele( Price, newest, sort)</div>
         <div class="row">
-            {% for bicycle in products %}
+            {% for product in products %}
                 <div class="col-md-3 mb-3">
                     <div class="card border-info mb-3 h-100">
-                        {% if bicycle.image %}
-                            <img src="{{ bicycle.image.url }}" class="card-img-top my-4" alt="{{ bicycle.name }}">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="card-img-top my-4" alt="{{ product.name }}">
                         {% endif %}
                         <div class="card-body ">
-                            <h5 class="card-title">{{ bicycle.name }}</h5>
-                            <p class="card-text">{{ bicycle.description }}</p>
-                            {% if bicycle.special_price %}
-                                <p class="card-text text-decoration-line-through">Price: ${{ bicycle.price }}</p>
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                            {% if product.special_price %}
+                                <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
                                 {# cod pentru pret special #}
-                                {% if bicycle.special_price %}
-                                    <p><strong>Special Price:</strong> ${{ bicycle.special_price }}</p>
-                                    {% if bicycle.special_price_valid_until %}
+                                {% if product.special_price %}
+                                    <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
+                                    {% if product.special_price_valid_until %}
                                         <p><strong>Special Price Valid
-                                            Until:</strong> {{ bicycle.special_price_valid_until }}</p>
+                                            Until:</strong> {{ product.special_price_valid_until }}</p>
                                     {% endif %}
                                 {% endif %}
                             {% else %}
-                                <p class="card-text">Price: ${{ bicycle.price }}</p>
+                                <p class="card-text">Price: ${{ product.price }}</p>
                             {% endif %}
-                            <p class="card-text">Stock: {% if bicycle.stock %}In stoc{% else %}Out of
+                            <p class="card-text">Stock: {% if product.stock %}In stoc{% else %}Out of
                                 stock
                             {% endif %}</p>
                             <form action="{% url 'add_product_to_cart' %}" method="post">
                                 {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ bicycle.id }}">
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
                                 <input type="number" name="quantity" value="1">
                                 <button type="submit" class="btn btn-outline-primary"><strong>Add to basket</strong>
                                 </button>

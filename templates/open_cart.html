@@ -10,7 +10,17 @@
             {{ cart_item }}<br>
         {% endfor %}
     </div>
-
+    <div>
+    {% if cart_item %}
+      <ul>
+        {% for cart_item in cartitem_set.all %}
+          <li>{{ cart_item.bicycle.name }} - {{ cart_item.quantity }} x {{ cart_item.product.price }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Your cart is empty.</p>
+    {% endif %}
+  </div>
 {% endblock %}
 
 

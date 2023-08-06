@@ -25,20 +25,19 @@ def home_page(request):
 #         return context
 
 
-# TODO  o classa care sa mosteneasca un datail view pentru toate categoriile
-def bicycle_list(request):
+def product_list(request):
     bicycles = Product.objects.all()
-    return render(request, 'bicycle_list.html', {'bicycles': bicycles})
+    return render(request, 'product_list.html', {'products': bicycles})
 
 
 class BicycleDetailsView(DetailView):
-    template_name = "bicycle_details.html"
+    template_name = "product_details.html"
     model = Product
     # permission_required = 'view_bicycle'
 
 
 class CategoryDetailsView(DetailView):
-    template_name = "bicycle_list.html"
+    template_name = "product_list.html"
     model = Category
     context_object_name = 'category'
 
@@ -46,7 +45,7 @@ class CategoryDetailsView(DetailView):
         context = super().get_context_data(**kwargs)
         category = context[self.context_object_name]
         products = Product.objects.filter(category=category)
-        context['bicycles'] = products
+        context['products'] = products
         return context
     # permission_required = 'view_bicycle'
 
