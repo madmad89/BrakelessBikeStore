@@ -20,7 +20,7 @@
                         {% endif %}
                         <div class="card-body ">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                            <p class="card-text">{{ product.description|truncatechars:50 }}</p>
                             {% if product.special_price %}
                                 <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
                                 {# cod pentru pret special #}
