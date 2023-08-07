@@ -7,7 +7,8 @@
 {% block content %}
 
     <div class="container-lg">
-        <div class="mb-3 text-primary text-center ">
+        <div class="mb-4 text-primary text-center ">
+            <br><br>
             <img src="{% static 'bicycle_images/SC_logo.png' %}" width="30%" alt="SANTA CRUZ">
         </div>
         <div class="row">
@@ -26,7 +27,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-outline-primary"><strong>Details</strong></a>
+                            <a href="{% url 'product_details' %}" class="btn text-center btn-outline-primary"><strong>Details</strong></a>
                         </div>
                     </div>
                 </div>
