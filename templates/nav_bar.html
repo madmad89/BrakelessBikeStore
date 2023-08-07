@@ -2,7 +2,7 @@
     <div class="container-md">
         <a class="navbar-brand me-2 " href="{% url 'home_page' %}">
             <img src="/static/bicycle_images/Logo-MM.png" alt="no image" width="40">
-            <strong class="" style="color: #ee9857;"> Brakeless Bikes</strong>
+            <strong class="" style="color: white;"> Brakeless Bikes</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,8 +48,7 @@
                     </div>
                 {% else %}
                     <a href='{% url 'login' %}' class="btn btn-outline-light" style="color: #4faeb4;">
-                    <span class="material-symbols-outlined">login</span>Login
-                    </a>
+                    <span class="material-symbols-outlined">login</span>Login</a>
                     <a href="{% url 'create-user' %}" class="btn btn-outline-warning me-2" style="color: #4faeb4;">
                         <span class="material-symbols-outlined">person_add</span>Sign up</a>
                 {% endif %}
