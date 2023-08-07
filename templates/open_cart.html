@@ -23,7 +23,7 @@
         {% if cart.cartitem_set.exists %}
             <ul class="cart-list">
                 {% for cart_item in cart.cartitem_set.all %}
-                    <li class="cart-item">
+                    <ul class="cart-item">
                         <div class="item_image">
                             <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}" width="400">
                         </div>
@@ -36,7 +36,7 @@
                         <div class="item-actions">
                             <a href="#">Remove</a>
                         </div>
-                    </li>
+                    </ul>
                 {% endfor %}
             </ul>
             <div class="cart-total">
