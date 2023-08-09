@@ -6,6 +6,39 @@
 
 {% block content %}
 
+<div class="container-lg">
+    <br><br>
+    <div class="mb-3 text-primary text-center">
+        <img src="{% static 'bicycle_images/SC_logo.png' %}" width="30%" alt="SANTA CRUZ">
+    </div>
+    <div class="p-3 mb-2 bg-warning-subtle text-emphasis-warning"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-info mb-3">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top my-4" alt="{{ product.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    {% if product.special_price %}
+                        <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
+                        {# cod pentru pret special #}
+                        {% if product.special_price %}
+                            <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
+                            {% if product.special_price_valid_until %}
+                                <p><strong>Special Price Valid Until:</strong> {{ product.special_price_valid_until }}</p>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        <p class="card-text">Price: ${{ product.price }}</p>
+                    {% endif %}
+                    <p class="card-text">Stock: {% if product.stock %}In stock{% else %}Out of stock{% endif %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 

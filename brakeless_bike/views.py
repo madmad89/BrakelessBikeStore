@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView
 
 from .models import Product, Category, Cart, CartItem
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 def home_page(request):
@@ -30,10 +30,17 @@ def product_list(request):
     return render(request, 'product_list.html', {'products': bicycles})
 
 
-class BicycleDetailsView(DetailView):
-    template_name = "product_details.html"
-    model = Product
-    # permission_required = 'view_bicycle'
+# class BicycleDetailsView(DetailView):
+#     template_name = "product_details.html"
+#     model = Product
+#     permission_required = 'view_bicycle'
+
+def product_details(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    context = {
+        'product': product
+    }
+    return render(request, 'product_details.html', context)
 
 
 class CategoryDetailsView(DetailView):
