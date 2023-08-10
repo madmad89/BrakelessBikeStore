@@ -1,39 +1,23 @@
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView
 
+from .forms import CheckoutForm
 from .models import Product, Category, Cart, CartItem
 from django.shortcuts import render, redirect, get_object_or_404
 
 
 def home_page(request):
     products = Product.objects.filter(special_price__isnull=False)
-    # components = BikeComponents.objects.filter(special_price__isnull=False)
-    # apparel = RiderApparel.objects.filter(special_price__isnull=False)
     content = {
         'products': products,
-        # 'components': components,
-        # 'apparel': apparel
     }
     return render(request, 'home_page.html', content)
-
-
-# class ProductListView(ListView):
-#     model = Product
-#
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         return context
 
 
 def product_list(request):
     products = Product.objects.all()
     return render(request, 'product_list.html', {'products': products})
 
-
-# class BicycleDetailsView(DetailView):
-#     template_name = "product_details.html"
-#     model = Product
-#     permission_required = 'view_bicycle'
 
 def product_details(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -54,7 +38,6 @@ class CategoryDetailsView(DetailView):
         products = Product.objects.filter(category=category)
         context['products'] = products
         return context
-    # permission_required = 'view_bicycle'
 
 
 @login_required
@@ -72,3 +55,19 @@ def add_product_to_cart(request):
 def open_cart_view(request):
     open_cart, created = Cart.objects.get_or_create(user=request.user, status='open')
     return render(request, 'open_cart.html', {'cart': open_cart})
+
+
+def checkout(request):
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            # Process form data, handle payment, and create order
+            # Redirect to order confirmation page after successful payment
+            return redirect('order_confirmation')
+    else:
+        form = CheckoutForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'checkout.html', context)
