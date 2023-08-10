@@ -12,21 +12,21 @@
             <img src="{% static 'bicycle_images/SC_logo.png' %}" width="30%" alt="SANTA CRUZ">
         </div>
         <div class="row">
-            {% for bicycle in bicycles %}
+            {% for product in products %}
                 <div class="col-md-4 mb-3">
                     <div class="card border-info mb-3 h-100">
-                        {% if bicycle.special_price %}
-                            <img src="{{ bicycle.image.url }}" class="card-img-top" alt="{{ bicycle.name }}">
+                        {% if product.special_price %}
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                         {% endif %}
                         <div class="card-body ">
-                            <h5 class="card-title">{{ bicycle.name }}</h5>
-                            <p class="card-text">{{ bicycle.description }}</p>
-                            <p class="card-text text-decoration-line-through">Price: ${{ bicycle.price }}</p>
-                            <p><strong>Special Price:</strong> ${{ bicycle.special_price }}</p>
-                            <p><strong>Special Price Valid Until:</strong> {{ bicycle.special_price_valid_until }}</p>
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                            <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
+                            <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
+                            <p><strong>Special Price Valid Until:</strong> {{ product.special_price_valid_until }}</p>
                         </div>
                         <div class="card-footer text-center mt-3">
-                            <a href="{% url 'product_details' bicycle.id %}" class="btn btn-outline-secondary"><strong>Details</strong></a>
+                            <a href="{% url 'product_details' product.id %}" class="btn btn-outline-secondary"><strong>Details</strong></a>
                         </div>
                     </div>
                 </div>

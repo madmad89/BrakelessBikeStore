@@ -6,11 +6,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 
 def home_page(request):
-    bicycles = Product.objects.filter(special_price__isnull=False)
+    products = Product.objects.filter(special_price__isnull=False)
     # components = BikeComponents.objects.filter(special_price__isnull=False)
     # apparel = RiderApparel.objects.filter(special_price__isnull=False)
     content = {
-        'bicycles': bicycles,
+        'products': products,
         # 'components': components,
         # 'apparel': apparel
     }
@@ -26,8 +26,8 @@ def home_page(request):
 
 
 def product_list(request):
-    bicycles = Product.objects.all()
-    return render(request, 'product_list.html', {'products': bicycles})
+    products = Product.objects.all()
+    return render(request, 'product_list.html', {'products': products})
 
 
 # class BicycleDetailsView(DetailView):
