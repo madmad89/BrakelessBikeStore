@@ -57,17 +57,17 @@ def open_cart_view(request):
     return render(request, 'open_cart.html', {'cart': open_cart})
 
 
-def checkout(request):
-    if request.method == 'POST':
-        form = CheckoutForm(request.POST)
-        if form.is_valid():
-            # Process form data, handle payment, and create order
-            # Redirect to order confirmation page after successful payment
-            return redirect('order_confirmation')
-    else:
-        form = CheckoutForm()
-
-    context = {
-        'form': form,
-    }
-    return render(request, 'checkout.html', context)
+# def checkout(request):
+#     if request.method == 'POST':
+#         form = CheckoutForm(request.POST)
+#         if form.is_valid():
+#             # Process form data, handle payment, and create order
+#             # Redirect to order confirmation page after successful payment
+#             return redirect('order_confirmation')
+#     else:
+#         form = CheckoutForm()
+#
+#     context = {
+#         'form': form,
+#     }
+#     return render(request, 'checkout.html', context)
