@@ -22,13 +22,13 @@
 {#                                <p class="card-text">Price: {{ cart_item.product.price }}</p>#}
 {#                                <form action="{% url 'update_cart' cart_item.product.id %}" method="post">#}
 {#                                    {% csrf_token %}#}
-{#                                    <div class="row md-3">#}
+{##}
+{#                                    <div class="row-md-3">#}
 {#                                        <label for="quantity" class="col-form-label">Quantity:</label>#}
-{#                                        <input class="form-control me-2 my-2" type="number" name="quantity"#}
+{#                                        <input class="form-control mb-2 md-2" type="number" name="quantity"#}
 {#                                               value="{{ cart_item.quantity }}" min="1">#}
-{#                                        <button type="submit" class="btn lh-1 my-2 col btn-outline-primary">#}
-{#                                            Update#}
-{#                                        </button>#}
+{#                                        <button type="submit" class="btn btn-primary md-2 mb-2">Update</button>#}
+{#                                        <a href="{% url 'remove_from_cart' cart_item.product.id %}" class="btn btn-danger md-2 mb-2">Remove</a>#}
 {#                                    </div>#}
 {#                                </form>#}
 {#                                <p class="card-text">Total: {{ cart_item.product.price|floatformat:2}}</p>#}
@@ -54,10 +54,12 @@
 
 {% block content %}
 <div class="container-lg">
-    <h4>Your Shopping Cart</h4>
+<br><br>
+    <h4 class="text-center">Your Shopping Cart</h4>
+    <br><br>
     <div class="cart-items">
         {% if cart.cartitem_set.exists %}
-            <ul class="list-group">
+            <ul class="list-group bs-primary-border-subtle">
                 {% for cart_item in cart.cartitem_set.all %}
                     <li class="list-group-item">
                         <div class="item_image">
@@ -69,7 +71,7 @@
                             <p>Price: {{ cart_item.product.price }}</p>
                             <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
                                 {% csrf_token %}
-                                <div class="row g-3">
+                                <div class="row g-4">
                                     <div class="col-md-4">
                                         <label for="quantity" class="col-form-label">Quantity:</label>
                                         <input class="form-control mb-2 md-2" type="number" name="quantity"
@@ -81,9 +83,6 @@
                             </form>
                             <p>Total: {{ cart_item.product.price}} *  {{ cart_item.quantity }}</p>
                         </div>
-{#                        <div class="item-actions">#}
-{#                            <a href="{% url 'remove_from_cart' cart_item.product.id %}" class="btn btn-danger">Remove</a>#}
-{#                        </div>#}
                     </li>
                 {% endfor %}
             </ul>
