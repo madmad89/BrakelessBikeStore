@@ -31,7 +31,15 @@
                             <div class="item-details">
                                 <h5>{{ cart_item.product.name }}</h5>
                                 <p>Price: {{ cart_item.product.price }}</p>
-                                <p>Quantity: {{ cart_item.quantity }}</p>
+                                <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="row md-3">
+                                        <label for="quantity">Quantity:</label>
+                                        <input class="form-control me-2 my-2" type="number" name="quantity" value="{{ cart_item.quantity }}" min="1">
+                                        <button type="submit" class="btn lh-1 my-2 col btn-outline-primary">Update</button>
+                                    </div>
+                                </form>
+                                {#                                <p>Quantity: {{ cart_item.quantity }}</p>#}
                                 <p>Total: {{ cart_item.product.price }} * {{ cart_item.quantity }}</p>
                                 {# |mul:cart_item.product.price  - for multiply #}
                             </div>

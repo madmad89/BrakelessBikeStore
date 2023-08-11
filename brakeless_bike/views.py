@@ -67,6 +67,18 @@ def remove_from_cart(request, product_id):
     return redirect('open_cart')  # Redirect back to the cart page
 
 
+def update_cart(request, product_id):
+    cart = Cart.objects.get(user=request.user)  # Replace with your cart retrieval logic
+    product = Product.objects.get(id=product_id)  # Replace with your product retrieval logic
+
+    cart_item = CartItem.objects.get(cart=cart, product=product)
+    new_quantity = int(request.POST['quantity'])
+    cart_item.quantity = new_quantity
+    cart_item.save()
+
+    return redirect('open_cart')
+
+
 # def checkout(request):
 #     if request.method == 'POST':
 #         form = CheckoutForm(request.POST)
