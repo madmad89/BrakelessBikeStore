@@ -5,59 +5,98 @@
 {% block title %}Open cart{% endblock %}
 
 {#{% block content %}#}
-{#    <div>#}
-{#        {% for cart_item in cart.cartitem_set.all %}#}
-{#            {{ cart_item }}<br>#}
-{#            <div class="card">#}
-{#            {%  if product.image %}#}
+{#<div class="container-lg">#}
+{#    <h4>Your Shopping Cart</h4>#}
+{#    <div class="cart-items">#}
+{#        {% if cart.cartitem_set.exists %}#}
+{#            <div class="row row-cols-1 row-cols-md-2 g-4">#}
+{#                {% for cart_item in cart.cartitem_set.all %}#}
+{#                    <div class="col-md-3 mb-3">#}
+{#                        <div class="card border-info h-100">#}
+{#                            <div class="item_image">#}
+{#                                <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}"#}
+{#                                     class="card-img-top" width="400">#}
+{#                            </div>#}
+{#                            <div class="card-body">#}
+{#                                <h5 class="card-title">{{ cart_item.product.name }}</h5>#}
+{#                                <p class="card-text">Price: {{ cart_item.product.price }}</p>#}
+{#                                <form action="{% url 'update_cart' cart_item.product.id %}" method="post">#}
+{#                                    {% csrf_token %}#}
+{#                                    <div class="row md-3">#}
+{#                                        <label for="quantity" class="col-form-label">Quantity:</label>#}
+{#                                        <input class="form-control me-2 my-2" type="number" name="quantity"#}
+{#                                               value="{{ cart_item.quantity }}" min="1">#}
+{#                                        <button type="submit" class="btn lh-1 my-2 col btn-outline-primary">#}
+{#                                            Update#}
+{#                                        </button>#}
+{#                                    </div>#}
+{#                                </form>#}
+{#                                <p class="card-text">Total: {{ cart_item.product.price|floatformat:2}}</p>#}
+{#                            </div>#}
+{#                            <div class="card-footer">#}
+{#                                <a href="{% url 'remove_from_cart' cart_item.product.id %}" class="btn btn-danger">Remove</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
 {#            </div>#}
-{#        {% endfor %}#}
+{#            <div class="cart-total mt-3">#}
+{#                <p>Total: {{ cart.total_price }}</p>#}
+{#                <a href="#" class="btn btn-primary">Proceed to Checkout</a>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <p>Your cart is empty.</p>#}
+{#        {% endif %}#}
 {#    </div>#}
+{#</div>#}
 {#{% endblock %}#}
 
 
 {% block content %}
-    <div class="cart-container">
-        <h4>Your Shopping Cart</h4>
-        <div class="cart-items">
-            {% if cart.cartitem_set.exists %}
-                <ul class="cart-list">
-                    {% for cart_item in cart.cartitem_set.all %}
-                        <ul class="cart-item">
-                            <div class="item_image">
-                                <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}"
-                                     width="400">
-                            </div>
-                            <div class="item-details">
-                                <h5>{{ cart_item.product.name }}</h5>
-                                <p>Price: {{ cart_item.product.price }}</p>
-                                <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
-                                    {% csrf_token %}
-                                    <div class="row md-3">
-                                        <label for="quantity">Quantity:</label>
-                                        <input class="form-control me-2 my-2" type="number" name="quantity" value="{{ cart_item.quantity }}" min="1">
-                                        <button type="submit" class="btn lh-1 my-2 col btn-outline-primary">Update</button>
+<div class="container-lg">
+    <h4>Your Shopping Cart</h4>
+    <div class="cart-items">
+        {% if cart.cartitem_set.exists %}
+            <ul class="list-group">
+                {% for cart_item in cart.cartitem_set.all %}
+                    <li class="list-group-item">
+                        <div class="item_image">
+                            <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}"
+                                 class="img-thumbnail" width="100">
+                        </div>
+                        <div class="item-details">
+                            <h5>{{ cart_item.product.name }}</h5>
+                            <p>Price: {{ cart_item.product.price }}</p>
+                            <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="quantity" class="col-form-label">Quantity:</label>
+                                        <input class="form-control" type="number" name="quantity"
+                                               value="{{ cart_item.quantity }}" min="1">
                                     </div>
-                                </form>
-                                {#                                <p>Quantity: {{ cart_item.quantity }}</p>#}
-                                <p>Total: {{ cart_item.product.price }} * {{ cart_item.quantity }}</p>
-                                {# |mul:cart_item.product.price  - for multiply #}
-                            </div>
-                            <div class="item-actions">
-                                <a href="{% url 'remove_from_cart' cart_item.product.id %}">Remove</a>
-                            </div>
-                        </ul>
-                    {% endfor %}
-                </ul>
-                <div class="cart-total">
-                    <p>Total: {{ cart.total_price }}</p>
-                    <a href="#" class="checkout-button">Proceed to Checkout</a>
-                </div>
-            {% else %}
-                <p>Your cart is empty.</p>
-            {% endif %}
-        </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <p>Total: {{ cart_item.product.price}} *  {{ cart_item.product.quantity }}</p>
+                        </div>
+                        <div class="item-actions">
+                            <a href="{% url 'remove_from_cart' cart_item.product.id %}" class="btn btn-danger">Remove</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="cart-total mt-3">
+                <p>Total: {{ cart.total_price }}</p>
+                <a href="#" class="btn btn-primary">Proceed to Checkout</a>
+            </div>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
     </div>
+</div>
 {% endblock %}
 
 
