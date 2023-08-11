@@ -65,26 +65,25 @@
                                  class="img-thumbnail" width="100">
                         </div>
                         <div class="item-details">
-                            <h5>{{ cart_item.product.name }}</h5>
+                            <h6>{{ cart_item.product.name }}</h6>
                             <p>Price: {{ cart_item.product.price }}</p>
                             <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
                                 {% csrf_token %}
                                 <div class="row g-3">
                                     <div class="col-md-4">
                                         <label for="quantity" class="col-form-label">Quantity:</label>
-                                        <input class="form-control" type="number" name="quantity"
+                                        <input class="form-control mb-2 md-2" type="number" name="quantity"
                                                value="{{ cart_item.quantity }}" min="1">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary md-2 mb-2">Update</button>
+                                        <a href="{% url 'remove_from_cart' cart_item.product.id %}" class="btn btn-danger md-2 mb-2">Remove</a>
                                     </div>
                                 </div>
                             </form>
                             <p>Total: {{ cart_item.product.price}} *  {{ cart_item.quantity }}</p>
                         </div>
-                        <div class="item-actions">
-                            <a href="{% url 'remove_from_cart' cart_item.product.id %}" class="btn btn-danger">Remove</a>
-                        </div>
+{#                        <div class="item-actions">#}
+{#                            <a href="{% url 'remove_from_cart' cart_item.product.id %}" class="btn btn-danger">Remove</a>#}
+{#                        </div>#}
                     </li>
                 {% endfor %}
             </ul>
