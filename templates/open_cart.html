@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <p>Total: {{ cart_item.product.price }} * {{ cart_item.quantity }}</p>
+                                <p>Total: {{ cart_item.get_total}}</p>
                             </div>
                         </li>
                     {% endfor %}
