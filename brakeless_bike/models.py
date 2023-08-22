@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -49,7 +50,10 @@ class CartItem(models.Model):
 
     @property
     def get_total(self):
-        total = self.product.price * self.quantity
+        if self.product.special_price is not None and self.product.special_price_valid_until >= timezone.now().date():
+            total = self.product.special_price * self.quantity
+        else:
+            total = self.product.price * self.quantity
         return total
 
     def __str__(self):
