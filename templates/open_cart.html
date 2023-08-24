@@ -85,7 +85,7 @@
                     {% endfor %}
                 </ul>
                 <div class="cart-total mt-3">
-                    <p>Total: {{ cart.total_price }}</p>
+                    <p>Total: {{ cart.get_cart_total }}</p>
                     <a href="#" class="btn btn-outline-success">Proceed to Checkout</a>
                 </div>
                 <br><br>
