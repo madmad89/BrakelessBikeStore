@@ -86,7 +86,10 @@
                 </ul>
                 <div class="cart-total mt-3">
                     <p>Total: {{ cart.get_cart_total }}</p>
-                    <a href="#" class="btn btn-outline-success">Proceed to Checkout</a>
+{#                    <a href="{% url 'checkout' %}" class="btn btn-outline-success">Proceed to Checkout</a>#}
+                </div>
+                <div>
+                <a href="{% url 'checkout' %}" class="btn btn-outline-success">Proceed to Checkout</a>
                 </div>
                 <br><br>
             {% else %}
