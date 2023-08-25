@@ -6,10 +6,11 @@
 
 {% block content %}
 
-    <div class="container-lg">
-        <div class="mb-4 text-primary text-center ">
+    <div class="container-lg" style="background-image: {% static 'bicycle_images/green_action1.jpg' %}">
+        <div class="mb-4 text-center" style="font-family: Druk,fantasy">
             <br><br>
-            <img src="{% static 'bicycle_images/SC_logo.png' %}" width="30%" alt="SANTA CRUZ">
+            <h2>SUMMER SALES</h2>
+            <br>
         </div>
         <div class="row">
             {% for product in products %}
