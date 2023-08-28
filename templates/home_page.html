@@ -21,7 +21,7 @@
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description }}</p>
+                            <p class="card-text">{{ product.description|truncatechars:50 }}</p>
                             <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
                             <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
                             <p><strong>Special Price Valid Until:</strong> {{ product.special_price_valid_until }}</p>
