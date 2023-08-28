@@ -17,8 +17,12 @@
                 <h3>Checkout</h3>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <div class="cart-body">
+                        {{ form.as_p }}
+                    </div>
+                    <div class="card-footer text-center">
                     <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                    </div>
                 </form>
             </div>
         </div>
