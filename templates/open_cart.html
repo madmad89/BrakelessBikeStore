@@ -67,7 +67,7 @@
                             </div>
                             <div class="item-details">
                                 <h6>{{ cart_item.product.name }}</h6>
-                                <p>Price: {{ cart_item.product.price }}</p>
+                                <p>Price: ${{ cart_item.product.price }}</p>
                                 <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
                                     {% csrf_token %}
                                     <div class="row g-4">
@@ -79,13 +79,13 @@
                                         </div>
                                     </div>
                                 </form>
-                                <p>Total: {{ cart_item.get_total}}</p>
+                                <p>Total: ${{ cart_item.get_total}}</p>
                             </div>
                         </li>
                     {% endfor %}
                 </ul>
                 <div class="cart-total mt-3">
-                    <p>Total: {{ cart.get_cart_total }}</p>
+                    <p>Total: ${{ cart.get_cart_total }}</p>
 {#                    <a href="{% url 'checkout' %}" class="btn btn-outline-success">Proceed to Checkout</a>#}
                 </div>
                 <div>
