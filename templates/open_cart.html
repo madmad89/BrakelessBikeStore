@@ -84,12 +84,12 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <div class="cart-total mt-3">
+                <div class="cart-total mt-3 d-flex justify-content-end">
                     <p>Total: ${{ cart.get_cart_total }}</p>
 {#                    <a href="{% url 'checkout' %}" class="btn btn-outline-success">Proceed to Checkout</a>#}
                 </div>
-                <div>
-                <a href="{% url 'checkout' %}" class="btn btn-outline-success">Proceed to Checkout</a>
+                <div class="d-flex justify-content-end">
+                <a href="{% url 'checkout' %}" class="btn btn-outline-success ">Proceed to Checkout</a>
                 </div>
                 <br><br>
             {% else %}
