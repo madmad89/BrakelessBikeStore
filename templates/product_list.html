@@ -8,13 +8,10 @@
 
     <div class=" mb-3 container-lg">
     <br><br>
-        <div class="mb-3 text-primary text-center">
-            <img src="{% static 'bicycle_images/SC_logo.png' %}" width="30%" alt="SANTA CRUZ">
-        </div>
         <div class="row">
             {% for product in products %}
                 <div class="col-md-3 mb-3">
-                    <div class="card border-info mb-3">
+                    <div class="card border-info mb-3 h-100">
                         {% if product.image %}
                             <img src="{{ product.image.url }}" class="card-img-top my-4" alt="{{ product.name }}">
                         {% endif %}
