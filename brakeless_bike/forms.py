@@ -7,6 +7,7 @@ class CheckoutForm(forms.Form):
     card_number = forms.CharField(label='Card Number', max_length=16)
     card_expiry = forms.CharField(label='Card Expiry', max_length=5, help_text='MM/YY')
     card_cvc = forms.CharField(label='Card CVC', max_length=3)
+    card_name = forms.CharField(label='Name Holder', max_length=100)
 
     # # Additional options
     # subscribe_to_newsletter = forms.BooleanField(label='Subscribe to Newsletter', required=False)
