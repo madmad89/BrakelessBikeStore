@@ -48,10 +48,13 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
 
-    # def get_cart_total(self):
-    #     cartitem = self.cartitem_set.all()
-    #     total = sum(item.get_total for item in cartitem)
-    #     return total
+    def get_cart_total(self):
+        # cartitem = self.cartitem_set.all()
+        # total = sum(item.get_total for item in cartitem)
+        # return total
+        cartitems = CartItem.objects.filter(cart=self)
+        total = sum(item.get_total() for item in cartitems)
+        return total
 
     @property
     def get_total(self):
