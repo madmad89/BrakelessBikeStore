@@ -62,7 +62,7 @@
                 <ul class="list-group bs-primary-border-subtle">
                     {% for cart_item in cart.cartitem_set.all %}
                         <li class="list-group-item">
-                            <div class="item_image">
+                            <div class="item_image mb-2">
                                 <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}" class="img-thumbnail" width="100">
                             </div>
                             <div class="row item-details">
