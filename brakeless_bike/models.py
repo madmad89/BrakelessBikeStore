@@ -53,8 +53,6 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
 
-
-
     @property
     def get_total(self):
         if self.product.special_price is not None and self.product.special_price_valid_until >= timezone.now().date():
