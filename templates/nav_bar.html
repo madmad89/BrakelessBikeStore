@@ -17,12 +17,12 @@
                 </li>
                 {% for category in categories %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-decoration-underline" style="color: #4faeb4;" href="#" role="button"
+                        <a class="nav-link dropdown-toggle text-decoration-underline" style="color: whitesmoke" href="#" role="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false">
                             {{ category.name }}
                         </a>
-                        <ul class="dropdown-menu" style="background-color: #4faeb4;">
+                        <ul class="dropdown-menu" style="background-color: whitesmoke">
                             {% for subcategory in category.subcategories %}
                                 <li><a class="dropdown-item"
                                         href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a>
@@ -39,9 +39,9 @@
                             <div class="dropdown row-md-4">
                                 <button
                                         class="btn btn-outline dropdown-toggle me-2" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false" style="color: #4faeb4;"><span class="material-symbols-outlined">personal_injury</span>
+                                        aria-expanded="false" style="color: whitesmoke;"><span class="material-symbols-outlined">personal_injury</span>
                                 </button>
-                                <ul class="dropdown-menu" style="color: #4faeb4;">
+                                <ul class="dropdown-menu" style="color: whitesmoke">
                                     <li><a class="dropdown-item" href="{% url 'password_change' %}">
                                         <span class="material-symbols-outlined">password</span> Change password</a></li>
                                     <li><a class="dropdown-item" href="{% url 'logout' %}">
@@ -49,21 +49,21 @@
                                 </ul>
                             </div>
                             <div>
-                                <a class="btn me-2" style="color: #4faeb4;" href="{% url 'open_cart' %}">
+                                <a class="btn me-2" style="color: whitesmoke" href="{% url 'open_cart' %}">
                                 <span class="material-symbols-outlined">shopping_cart</span> ({{ product_count }})</a>
                             </div>
 {#                        </div>#}
                     </div>
                 {% else %}
-                    <a href='{% url 'login' %}' class="btn btn-outline-light" style="color: #4faeb4;">
+                    <a href='{% url 'login' %}' class="btn btn-outline-warning" style="color: whitesmoke">
                     <span class="material-symbols-outlined">login</span>Login</a>
-                    <a href="{% url 'create-user' %}" class="btn btn-outline-warning me-2" style="color: #4faeb4;">
+                    <a href="{% url 'create-user' %}" class="btn btn-outline-warning me-2" style="color: whitesmoke">
                         <span class="material-symbols-outlined">person_add</span>Sign up</a>
                 {% endif %}
             </div>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-warning me-2" style="color: #4faeb4;" type="submit">
+                <button class="btn btn-outline-warning me-2" style="color: whitesmoke" type="submit">
                     <span class="material-symbols-outlined">search</span></button>
             </form>
 

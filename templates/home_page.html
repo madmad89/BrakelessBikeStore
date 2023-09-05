@@ -5,36 +5,37 @@
 {% block title %} Home Page {% endblock %}
 
 {% block content %}
-{#    <div style="background-image: url('static/bicycle_images/green_action1.jpg'); background-size: cover;">#}
-    <div class="container-lg">
-        <div class="mb-4 text-center" style="font-family: Druk,fantasy">
-            <br><br>
-            <h2>SUMMER SALES</h2>
-            <br>
-        </div>
-        <div class="row">
-            {% for product in products %}
-                <div class="col-md-4 mb-3">
-                    <div class="card border-info mb-3 h-100">
-                        {% if product.special_price %}
-                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description|truncatechars:50 }}</p>
-                            <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
-                            <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
-                            <p><strong>Special Price Valid Until:</strong> {{ product.special_price_valid_until }}</p>
-                        </div>
-                        <div class="card-footer text-center mt-3">
-                            <a href="{% url 'product_details' product.id %}" class="btn btn-outline-secondary"><strong>Details</strong></a>
+{#    <div style="background-size: cover; background: url('static/bicycle_images/green_action1.jpg')">#}
+    <div style="background-color: #F5F5F5FF">
+        <div class="container-lg">
+            <div class="mb-4 text-center" style="font-family: Druk,fantasy">
+                <br><br>
+                <h2>SUMMER SALES</h2>
+                <br>
+            </div>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-black mb-3 h-100" style="background-color: whitesmoke">
+                            {% if product.special_price %}
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description|truncatechars:50 }}</p>
+                                <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
+                                <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
+                                <p><strong>Special Price Valid Until:</strong> {{ product.special_price_valid_until }}</p>
+                            </div>
+                            <div class="card-footer text-center mt-3">
+                                <a href="{% url 'product_details' product.id %}" class="btn btn-outline-secondary"><strong>Details</strong></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% empty %}
-                <li>Check Bikes Section</li>
-            {% endfor %}
+                {% empty %}
+                    <li>Check Bikes Section</li>
+                {% endfor %}
+            </div>
         </div>
-    </div>
     </div>
 {% endblock %}
