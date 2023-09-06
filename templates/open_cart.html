@@ -54,60 +54,63 @@
 
 {% block content %}
     <div style="background-size: cover; background-image: url('{% static 'bicycle_images/green_action3.jpg' %}')">
-        <div class="container-lg">
-            <br><br>
-            <h4 class="text-center">Your Shopping Cart</h4>
-            <br><br>
-            <div class="row">
+    <div class="container-lg">
+        <br><br>
+        <h4 class="text-center">Your Shopping Cart</h4>
+        <br><br>
+        <div class="row">
             <div class="col-lg-6">
-            <div class="cart-items">
-                {% if cart.cartitem_set.exists %}
-                    <ul class="list-group bs-primary-border-subtle">
-                        {% for cart_item in cart.cartitem_set.all %}
-                            <li class="list-group-item">
-                                <div class="item_image mb-2">
-                                    <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}"
-                                         class="img-thumbnail" width="100">
-                                </div>
-                                <div class="row item-details">
-                                    <h6>{{ cart_item.product.name }}</h6>
-                                    <p>Price: ${{ cart_item.product.price }}</p>
-                                    <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
-                                        {% csrf_token %}
-                                        <div class="row g-4">
-                                            <div class="cart-total mt-3 d-flex justify-content-end">
-                                                <label for="quantity"
-                                                       class="col-form-label me-2">Quantity:&nbsp;</label>
-                                                <input class="form-control mb-2 md-2 me-2" type="number" name="quantity"
-                                                       value="{{ cart_item.quantity }}" min="1" style="width: 60px">
-                                                <button type="submit" class="btn btn-outline-primary md-2 mb-2 me-2">
-                                                    Update
-                                                </button>
-                                                <a href="{% url 'remove_from_cart' cart_item.product.id %}"
-                                                   class="btn btn-outline-danger md-2 mb-2">Remove</a>
+                <div class="cart-items">
+                    {% if cart.cartitem_set.exists %}
+                        <ul class="list-group bs-primary-border-subtle">
+                            {% for cart_item in cart.cartitem_set.all %}
+                                <li class="list-group-item">
+                                    <div class="item_image mb-2">
+                                        <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}"
+                                             class="img-thumbnail" width="100">
+                                    </div>
+                                    <div class="row item-details">
+                                        <h6>{{ cart_item.product.name }}</h6>
+                                        <p>Price: ${{ cart_item.product.price }}</p>
+                                        <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="row g-4">
+                                                <div class="cart-total mt-3 d-flex justify-content-end">
+                                                    <label for="quantity"
+                                                           class="col-form-label me-2">Quantity:&nbsp;</label>
+                                                    <input class="form-control mb-2 md-2 me-2" type="number"
+                                                           name="quantity"
+                                                           value="{{ cart_item.quantity }}" min="1" style="width: 60px">
+                                                    <button type="submit"
+                                                            class="btn btn-outline-primary md-2 mb-2 me-2">
+                                                        Update
+                                                    </button>
+                                                    <a href="{% url 'remove_from_cart' cart_item.product.id %}"
+                                                       class="btn btn-outline-danger md-2 mb-2">Remove</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                    <p class="cart-total mt-3 d-flex justify-content-end">Total:
-                                        ${{ cart_item.get_total }}</p>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <div class="cart-total mt-3 d-flex justify-content-end">
-                        <p class="card mb-3" style="color: black"> Cart Total: ${{ cart.get_cart_total }}</p>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <a href="{% url 'checkout' %}" class="btn btn-success " style="color: white">Proceed to Checkout</a>
-                    </div>
+                                        </form>
+                                        <p class="cart-total mt-3 d-flex justify-content-end">Total:
+                                            ${{ cart_item.get_total }}</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="cart-total mt-3 d-flex justify-content-end">
+                            <p class="card mb-3" style="color: black"> Cart Total: ${{ cart.get_cart_total }}</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'checkout' %}" class="btn btn-success " style="color: white">Proceed to
+                                Checkout</a>
+                        </div>
+                        <br><br>
+                    {% else %}
+                        <p>Your cart is empty.</p>
+                    {% endif %}
                     <br><br>
-                {% else %}
-                    <p>Your cart is empty.</p>
-                {% endif %}
-                <br><br>
+                </div>
             </div>
-            </div>
-                            <div class="col-lg-6">
+            <div class="col-lg-6">
                 <div class="box-element" id="form-wrapper">
                     <form id="form">
                         <div id="user-info">
@@ -155,6 +158,127 @@
             </div>
         </div>
     </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR-CLIENT-ID&currency=USD&disable-funding=credit"></script>
+
+    <script>
+        var total = '{{cart.get_cart_total}}'
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            style: {
+                color: 'blue',
+                shape: 'rect',
+            },
+
+            // Set up the transaction
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: parseFloat(total).toFixed(2)
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    // Show a success message to the buyer
+                    submitFormData()
+                });
+            }
+
+        }).render('#paypal-button-container');
+    </script>
+
+    <script type="text/javascript">
+        var shipping = '{{order.shipping}}'
+
+        if (shipping == 'False') {
+            document.getElementById('shipping-info').innerHTML = ''
+        }
+
+        if (user != 'AnonymousUser') {
+            document.getElementById('user-info').innerHTML = ''
+        }
+
+        if (shipping == 'False' && user != 'AnonymousUser') {
+            //Hide entire form if user is logged in and shipping is false
+            document.getElementById('form-wrapper').classList.add("hidden");
+            //Show payment if logged in user wants to buy an item that does not require shipping
+            document.getElementById('payment-info').classList.remove("hidden");
+        }
+
+        var form = document.getElementById('form')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            console.log('Form Submitted...')
+            document.getElementById('form-button').classList.add("hidden");
+            document.getElementById('payment-info').classList.remove("hidden");
+        })
+
+        /*
+        document.getElementById('make-payment').addEventListener('click', function(e){
+            submitFormData()
+        })
+        */
+
+        function submitFormData() {
+            console.log('Payment button clicked')
+
+            var userFormData = {
+                'name': null,
+                'email': null,
+                'total': total,
+            }
+
+            var shippingInfo = {
+                'address': null,
+                'city': null,
+                'state': null,
+                'zipcode': null,
+            }
+
+            if (shipping != 'False') {
+                shippingInfo.address = form.address.value
+                shippingInfo.city = form.city.value
+                shippingInfo.state = form.state.value
+                shippingInfo.zipcode = form.zipcode.value
+            }
+
+            if (user == 'AnonymousUser') {
+                userFormData.name = form.name.value
+                userFormData.email = form.email.value
+            }
+
+            console.log('Shipping Info:', shippingInfo)
+            console.log('User Info:', userFormData)
+
+            var url = "/process_order/"
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'applicaiton/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({'form': userFormData, 'shipping': shippingInfo}),
+
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Success:', data);
+                    alert('Transaction completed');
+
+                    cart = {}
+                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+                    window.location.href = "{% url 'checkout' %}"
+
+                })
+        }
+    </script>
 {% endblock %}
 
 
