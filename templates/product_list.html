@@ -5,54 +5,59 @@
 {% block title %} BrakelessBikes {% endblock %}
 
 {% block content %}
+    <div style="background-size: cover; background-position: center; background-image: url('{% static 'bicycle_images/green_action2.jpg' %}')">
 
-    <div class=" mb-3 container-lg">
-    <br><br>
-        <div class="row">
-            {% for product in products %}
-                <div class="col-md-3 mb-3">
-                    <div class="card border-black mb-3 h-100">
-                        {% if product.image %}
-                            <img src="{{ product.image.url }}" class="card-img-top my-4" alt="{{ product.name }}">
-                        {% endif %}
-                        <div class="card-body ">
-                            <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description|truncatechars:50 }}</p>
-                            {% if product.special_price %}
-                                <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
-                                {# cod pentru pret special #}
-                                {% if product.special_price %}
-                                    <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
-                                    {% if product.special_price_valid_until %}
-                                        <p><strong>Special Price Valid
-                                            Until:</strong> {{ product.special_price_valid_until }}</p>
-                                    {% endif %}
-                                {% endif %}
-                            {% else %}
-                                <p class="card-text">Price: ${{ product.price }}</p>
+        <div class=" mb-3 container-lg">
+            <br><br>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-black mb-3 h-100">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" class="card-img-top my-4" alt="{{ product.name }}">
                             {% endif %}
-                            <p class="card-text">Stock: {% if product.stock %}In stoc{% else %}Out of
-                                stock
-                            {% endif %}</p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <form action="{% url 'add_product_to_cart' %}" method="post">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <input type="hidden" name="product_id" value="{{ product.id }}">
-                                    <input class=" form-control me-2 my-2" type="number" name="quantity" value="1" style="width: 70px">
-                                    <button type="submit" class="btn lh-1 my-2 col btn-outline-primary "><strong>Add to
-                                        basket</strong></button>
+                            <div class="card-body ">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description|truncatechars:50 }}</p>
+                                {% if product.special_price %}
+                                    <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
+                                    {# cod pentru pret special #}
+                                    {% if product.special_price %}
+                                        <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
+                                        {% if product.special_price_valid_until %}
+                                            <p><strong>Special Price Valid
+                                                Until:</strong> {{ product.special_price_valid_until }}</p>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <p class="card-text">Price: ${{ product.price }}</p>
+                                {% endif %}
+                                <p class="card-text">Stock: {% if product.stock %}In stoc{% else %}Out of
+                                    stock
+                                {% endif %}</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <form action="{% url 'add_product_to_cart' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                                        <input class=" form-control me-2 my-2" type="number" name="quantity" value="1"
+                                               style="width: 70px">
+                                        <button type="submit" class="btn lh-1 my-2 col btn-outline-primary "><strong>Add
+                                            to
+                                            basket</strong></button>
 
+                                    </div>
+                                </form>
+                                <div class="text-center mt-3">
+                                    <a href="{% url 'product_details' product.id %}"
+                                       class="btn btn-outline-secondary"><strong>Details</strong></a>
                                 </div>
-                            </form>
-                            <div class="text-center mt-3">
-                                <a href="{% url 'product_details' product.id %}" class="btn btn-outline-secondary"><strong>Details</strong></a>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
