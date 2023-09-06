@@ -6,7 +6,7 @@
 
 {% block content %}
     <div style="background-size: cover; background-image: url('static/bicycle_images/green_action1.jpg')">
-{#    <div style="background-color: #F5F5F5FF">#}
+        {#    <div style="background-color: #F5F5F5FF">#}
         <div class="container-lg">
             <div class="mb-4 text-center" style="font-family: Druk,fantasy">
                 <br><br>
@@ -25,10 +25,12 @@
                                 <p class="card-text">{{ product.description|truncatechars:50 }}</p>
                                 <p class="card-text text-decoration-line-through">Price: ${{ product.price }}</p>
                                 <p><strong>Special Price:</strong> ${{ product.special_price }}</p>
-                                <p><strong>Special Price Valid Until:</strong> {{ product.special_price_valid_until }}</p>
+                                <p><strong>Special Price Valid Until:</strong> {{ product.special_price_valid_until }}
+                                </p>
                             </div>
                             <div class="card-footer text-center mt-3">
-                                <a href="{% url 'product_details' product.id %}" class="btn btn-outline-secondary"><strong>Details</strong></a>
+                                <a href="{% url 'product_details' product.id %}"
+                                   class="btn btn-outline-secondary"><strong>Details</strong></a>
                             </div>
                         </div>
                     </div>
