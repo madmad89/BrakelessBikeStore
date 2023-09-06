@@ -54,107 +54,111 @@
 
 {% block content %}
     <div style="background-size: cover; background-image: url('{% static 'bicycle_images/green_action3.jpg' %}')">
-    <div class="container-lg">
-        <br><br>
-        <h4 class="text-center">Your Shopping Cart</h4>
-        <br><br>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="cart-items">
-                    {% if cart.cartitem_set.exists %}
-                        <ul class="list-group bs-primary-border-subtle">
-                            {% for cart_item in cart.cartitem_set.all %}
-                                <li class="list-group-item">
-                                    <div class="item_image mb-2">
-                                        <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}"
-                                             class="img-thumbnail" width="100">
-                                    </div>
-                                    <div class="row item-details">
-                                        <h6>{{ cart_item.product.name }}</h6>
-                                        <p>Price: ${{ cart_item.product.price }}</p>
-                                        <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
-                                            {% csrf_token %}
-                                            <div class="row g-4">
-                                                <div class="cart-total mt-3 d-flex justify-content-end">
-                                                    <label for="quantity"
-                                                           class="col-form-label me-2">Quantity:&nbsp;</label>
-                                                    <input class="form-control mb-2 md-2 me-2" type="number"
-                                                           name="quantity"
-                                                           value="{{ cart_item.quantity }}" min="1" style="width: 60px">
-                                                    <button type="submit"
-                                                            class="btn btn-outline-primary md-2 mb-2 me-2">
-                                                        Update
-                                                    </button>
-                                                    <a href="{% url 'remove_from_cart' cart_item.product.id %}"
-                                                       class="btn btn-outline-danger md-2 mb-2">Remove</a>
+        <div class="container-lg">
+            <br><br>
+            <h4 class="text-center">Your Shopping Cart</h4>
+            <br><br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="cart-items">
+                        {% if cart.cartitem_set.exists %}
+                            <ul class="list-group bs-primary-border-subtle">
+                                {% for cart_item in cart.cartitem_set.all %}
+                                    <li class="list-group-item">
+                                        <div class="item_image mb-2">
+                                            <img src="{{ cart_item.product.image.url }}"
+                                                 alt="{{ cart_item.product.name }}"
+                                                 class="img-thumbnail" width="100">
+                                        </div>
+                                        <div class="row item-details">
+                                            <h6>{{ cart_item.product.name }}</h6>
+                                            <p>Price: ${{ cart_item.product.price }}</p>
+                                            <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
+                                                {% csrf_token %}
+                                                <div class="row g-4">
+                                                    <div class="cart-total mt-3 d-flex justify-content-end">
+                                                        <label for="quantity"
+                                                               class="col-form-label me-2">Quantity:&nbsp;</label>
+                                                        <input class="form-control mb-2 md-2 me-2" type="number"
+                                                               name="quantity"
+                                                               value="{{ cart_item.quantity }}" min="1"
+                                                               style="width: 60px">
+                                                        <button type="submit"
+                                                                class="btn btn-outline-primary md-2 mb-2 me-2">
+                                                            Update
+                                                        </button>
+                                                        <a href="{% url 'remove_from_cart' cart_item.product.id %}"
+                                                           class="btn btn-outline-danger md-2 mb-2">Remove</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
-                                        <p class="cart-total mt-3 d-flex justify-content-end">Total:
-                                            ${{ cart_item.get_total }}</p>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <div class="cart-total mt-3 d-flex justify-content-end">
-                            <p class="card mb-3" style="color: black"> Cart Total: ${{ cart.get_cart_total }}</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{% url 'checkout' %}" class="btn btn-success " style="color: white">Proceed to
-                                Checkout</a>
-                        </div>
+                                            </form>
+                                            <p class="cart-total mt-3 d-flex justify-content-end">Total:
+                                                ${{ cart_item.get_total }}</p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="cart-total mt-3 d-flex justify-content-end">
+                                <p class="card mb-3" style="color: black"> Cart Total: ${{ cart.get_cart_total }}</p>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="{% url 'checkout' %}" class="btn btn-success " style="color: white">Proceed to
+                                    Checkout</a>
+                            </div>
+                            <br><br>
+                        {% else %}
+                            <p>Your cart is empty.</p>
+                        {% endif %}
                         <br><br>
-                    {% else %}
-                        <p>Your cart is empty.</p>
-                    {% endif %}
-                    <br><br>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="box-element" id="form-wrapper">
-                    <form id="form">
-                        <div id="user-info">
-                            <div class="form-field mt-3 mb-2">
-                                <input required class="form-control" type="text" name="name" placeholder="Name..">
+                <div class="col-lg-6">
+                    <div class="box-element" id="form-wrapper">
+                        <form id="form">
+                            <div id="user-info">
+                                <div class="form-field mt-3 mb-2">
+                                    <input required class="form-control" type="text" name="name" placeholder="Name..">
+                                </div>
+                                <div class="form-field mb-2">
+                                    <input required class="form-control" type="email" name="email"
+                                           placeholder="Email..">
+                                </div>
                             </div>
-                            <div class="form-field mb-2">
-                                <input required class="form-control" type="email" name="email" placeholder="Email..">
-                            </div>
-                        </div>
 
-                        <div id="shipping-info">
+                            <div id="shipping-info">
+                                <hr>
+                                <p><strong>Shipping Information:</strong></p>
+                                <hr>
+                                <div class="form-field mb-2">
+                                    <input class="form-control" type="text" name="address" placeholder="Address..">
+                                </div>
+                                <div class="form-field mb-2">
+                                    <input class="form-control" type="text" name="city" placeholder="City..">
+                                </div>
+                                <div class="form-field mb-2">
+                                    <input class="form-control" type="text" name="state" placeholder="State..">
+                                </div>
+                                <div class="form-field mb-2">
+                                    <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                                </div>
+                                {#						<div class="form-field">#}
+                                {#							<input class="form-control" type="text" name="country" placeholder="Zip code..">#}
+                                {#						</div>#}
+                            </div>
+
                             <hr>
-                            <p><strong>Shipping Information:</strong></p>
-                            <hr>
-                            <div class="form-field mb-2">
-                                <input class="form-control" type="text" name="address" placeholder="Address..">
-                            </div>
-                            <div class="form-field mb-2">
-                                <input class="form-control" type="text" name="city" placeholder="City..">
-                            </div>
-                            <div class="form-field mb-2">
-                                <input class="form-control" type="text" name="state" placeholder="State..">
-                            </div>
-                            <div class="form-field mb-2">
-                                <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
-                            </div>
-                            {#						<div class="form-field">#}
-                            {#							<input class="form-control" type="text" name="country" placeholder="Zip code..">#}
-                            {#						</div>#}
-                        </div>
+                            <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+                        </form>
+                    </div>
 
-                        <hr>
-                        <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
-                    </form>
+                    <br>
+                    <div class="box-element hidden" id="payment-info">
+                        <small>Paypal Options</small>
+                        <!--<button id="make-payment">Make payment</button>-->
+                        <div id="paypal-button-container"></div>
+                    </div>
+
                 </div>
-
-                <br>
-                <div class="box-element hidden" id="payment-info">
-                    <small>Paypal Options</small>
-                    <!--<button id="make-payment">Make payment</button>-->
-                    <div id="paypal-button-container"></div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -280,5 +284,3 @@
         }
     </script>
 {% endblock %}
-
-
