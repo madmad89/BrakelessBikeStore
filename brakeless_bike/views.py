@@ -88,8 +88,10 @@ def checkout(request):
     else:
         form = CheckoutForm()
 
+    open_cart, created = Cart.objects.get_or_create(user=request.user, status='open')
     context = {
         'form': form,
+        'cart': open_cart
     }
     return render(request, 'checkout.html', context)
 
