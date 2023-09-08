@@ -92,3 +92,13 @@ def checkout(request):
         'form': form,
     }
     return render(request, 'checkout.html', context)
+
+
+def search_products(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+
+    return render(request, 'product_list.html', {'products': products})
