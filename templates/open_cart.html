@@ -44,11 +44,11 @@
                                 {% endfor %}
                             </ul>
                             <div class="cart-total mt-3 d-flex justify-content-end">
-                                <h5 class="card mb-3" style="color: black"> Cart Total: ${{ cart.get_cart_total }}</h5>
+                                <h5 class="card mb-3" style="color: black"><strong>Cart Total: ${{ cart.get_cart_total }}</strong></h5>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <a href="{% url 'checkout' %}" class="btn btn-success " style="color: white">Proceed to
-                                    Checkout</a>
+                                <a href="{% url 'checkout' %}" class="btn btn-success " style="color: white"><strong>Proceed to
+                                    Checkout</strong></a>
                             </div>
                             <br><br>
                         {% else %}
