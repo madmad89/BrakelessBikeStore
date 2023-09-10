@@ -52,7 +52,6 @@ class Cart(models.Model):
         return sum([cart_item.quantity for cart_item in cart_items])
 
 
-
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
