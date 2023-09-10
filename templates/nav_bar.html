@@ -13,21 +13,21 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active text-decoration-underline" aria-current="page"
-                       href="{% url 'home_page' %}">
+                        href="{% url 'home_page' %}">
                         <span class="material-symbols-outlined" style="color: #ee9857;">home</span></a>
                 </li>
                 {% for category in categories %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-decoration-underline" style="color: whitesmoke" href="#"
-                           role="button"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false">
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             {{ category.name }}
                         </a>
                         <ul class="dropdown-menu" style="background-color: whitesmoke">
                             {% for subcategory in category.subcategories %}
                                 <li><a class="dropdown-item"
-                                       href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a>
+                                        href="{% url 'category_details' subcategory.id %}">{{ subcategory.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
