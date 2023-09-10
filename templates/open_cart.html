@@ -22,7 +22,8 @@
                                         </div>
                                         <div class="row item-details">
                                             <h6>{{ cart_item.product.name }}</h6>
-                                            <p>Price: ${% if cart_item.product.special_price %}{{ cart_item.product.special_price }}{% else %}{{ cart_item.product.price }}{% endif %}</p>
+                                            <div>{% if cart_item.product.special_price %} <p class="text-decoration-line-through">Price: $ {{ cart_item.product.price }}</p>
+                                                <span class="material-symbols-outlined">trending_down</span> Special Price: ${{ cart_item.product.special_price }}{% else %}{{ cart_item.product.price }}{% endif %}</div>
                                             <form action="{% url 'update_cart' cart_item.product.id %}" method="post">
                                                 {% csrf_token %}
                                                 <div class="row g-4">
